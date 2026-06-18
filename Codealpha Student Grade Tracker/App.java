@@ -1,0 +1,92 @@
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int numberOfStudents;
+
+        System.out.println("====================================");
+        System.out.println("     STUDENT GRADE TRACKER");
+        System.out.println("====================================");
+
+        System.out.print("Enter number of students: ");
+        numberOfStudents = sc.nextInt();
+        sc.nextLine();
+
+        String[] names = new String[numberOfStudents];
+        int[] marks = new int[numberOfStudents];
+
+        int total = 0;
+        int highest = Integer.MIN_VALUE;
+        int lowest = Integer.MAX_VALUE;
+
+        for (int i = 0; i < numberOfStudents; i++) {
+
+            System.out.println("\nStudent " + (i + 1));
+
+            System.out.print("Enter student name: ");
+            names[i] = sc.nextLine();
+
+            System.out.print("Enter marks: ");
+            marks[i] = sc.nextInt();
+            sc.nextLine();
+
+            total += marks[i];
+
+            if (marks[i] > highest) {
+                highest = marks[i];
+            }
+
+            if (marks[i] < lowest) {
+                lowest = marks[i];
+            }
+        }
+
+        double average = (double) total / numberOfStudents;
+
+        System.out.println("\n====================================");
+        System.out.println("         STUDENT REPORT");
+        System.out.println("====================================");
+
+        for (int i = 0; i < numberOfStudents; i++) {
+
+            String grade;
+            String status;
+
+            if (marks[i] >= 90) {
+                grade = "A";
+                status = "Excellent";
+            }
+            else if (marks[i] >= 75) {
+                grade = "B";
+                status = "Good";
+            }
+            else if (marks[i] >= 50) {
+                grade = "C";
+                status = "Pass";
+            }
+            else {
+                grade = "F";
+                status = "Fail";
+            }
+
+            System.out.println("\nStudent Name : " + names[i]);
+            System.out.println("Marks        : " + marks[i]);
+            System.out.println("Grade        : " + grade);
+            System.out.println("Status       : " + status);
+        }
+
+        System.out.println("\n====================================");
+        System.out.println("SUMMARY");
+        System.out.println("====================================");
+
+        System.out.printf("Average Marks : %.2f\n", average);
+        System.out.println("Highest Marks : " + highest);
+        System.out.println("Lowest Marks  : " + lowest);
+
+        sc.close();
+    }
+}
